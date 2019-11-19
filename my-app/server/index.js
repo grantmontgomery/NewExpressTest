@@ -12,14 +12,14 @@ app.use(urlEncoded({ extended: true }));
 app.use(cors());
 const port = 5000;
 
-app.get("/", (req, res) => {
+app.post("/yelpsearch", (req, res) => {
   const yelp = new URL("https://api.yelp.com/v3/businesses/search"),
     params = {
-      term: req.params.term,
-      location: req.params.location,
+      term: "bars",
+      location: "los angeles",
       radius: 15000
     };
-
+  console.log(req.params);
   Object.keys(params).forEach(key =>
     yelp.searchParams.append(key, params[key])
   );
